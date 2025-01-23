@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -23,28 +23,36 @@
         locale = "en_US.UTF-8";
         timeZone = "Asia/Tehran";
       };
+
+      pkgs = import nixpkgs {
+        inherit system;
+
+        config.allowUnfree = true;
+        config.input-fonts.acceptLicense = true;
+      };
     in
     {
-      formatter = nixpkgs.legacyPackages.${system}.alejandra;
+      # Available through 'nix fmt'
+      formatter.${system} = pkgs.nixfmt-rfc-style;
 
-      # TODO: Find out the use case of these
-      # nixosModules = import ./modules/nixos;
-      # homeManagerModules = import ./modules/home-manager;
-
+      # NixOS configuration entrypoint
+      # Available through 'nixos-rebuild --flake .#nixos'
       nixosConfigurations = {
-        "${consts.hostName}" = nixpkgs.lib.nixosSystem {
+        ${consts.hostName} = nixpkgs.lib.nixosSystem {
+          inherit pkgs;
           specialArgs = { inherit inputs outputs consts; };
           system = system;
-          modules = [
-            ./nixos/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.ali = import ./home-manager/home.nix;
-              home-manager.extraSpecialArgs = { inherit inputs outputs consts; };
-            }
-          ];
+          modules = [ ./nixos/configuration.nix ];
+        };
+      };
+
+      # Home Manager configuration entrypoint
+      # Available through 'home-manager --flake .#username@hostname'
+      homeConfigurations = {
+        ${consts.username} = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs outputs consts; };
+          modules = [ ./home/home.nix ];
         };
       };
     };
