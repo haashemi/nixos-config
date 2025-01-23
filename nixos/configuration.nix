@@ -6,54 +6,98 @@
   ];
 
   # Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+
+    systemd-boot.enable = true;
+    systemd-boot.consoleMode = "max";
+  };
 
   # Networking
+  # TODO: Explore the other networking options
   networking.hostName = consts.hostName;
   networking.networkmanager.enable = true;
 
   # Time zone and locale
+  # TODO: Explore the other i18n options
+  time.hardwareClockInLocalTime = true; # a Windows dual boot fix
   time.timeZone = consts.timeZone;
-  time.hardwareClockInLocalTime = true;
+
   i18n.defaultLocale = consts.locale;
 
-  # Plasma 6
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = consts.username;
+  # DE/DM
   services.desktopManager.plasma6.enable = true;
+  services.displayManager = {
+    sddm.enable = true;
+    sddm.wayland.enable = true;
+
+    autoLogin.enable = true;
+    autoLogin.user = consts.username;
+  };
 
   # Swap file
   swapDevices = [
     {
-      device = "/var/lib/swapfile";
       size = 16 * 1024;
+      device = "/var/lib/swapfile";
     }
   ];
 
   # Users
-  users.users = {
-    "${consts.username}" = {
-      isNormalUser = true;
-      extraGroups = [
-        "audio"
-        "wheel"
-        "docker"
-        "networkmanager"
-      ];
+  users = {
+    defaultUserShell = pkgs.fish;
+
+    users = {
+      ${consts.username} = {
+        createHome = true;
+        home = "/home/${consts.username}";
+        isNormalUser = true;
+        useDefaultShell = true;
+        extraGroups = [
+          "audio"
+          "wheel"
+          "docker"
+          "networkmanager"
+        ];
+      };
     };
   };
 
-  # Default shell
-  programs.fish.enable = true;
-  users.defaultUserShell = pkgs.fish;
-
-  # System packages
+  # System packages and programs
   environment.systemPackages = with pkgs; [
+    # CLI: Resource monitoring
+    btop
+    htop
+    ncdu
+    ranger
+
+    # CLI
+    aria2
+    tmux
+    screen
+    neofetch
+
+    # GUI Apps
+    nekoray
+    tidal-hifi
+    google-chrome
+    telegram-desktop
+
+    # Development
+    go
+    nixd # .nix language server
+    nodejs
+    corepack
+
+    # Code editors
+    vscode
+    zed-editor
+
     home-manager
   ];
+  programs = {
+    fish.enable = true;
+  };
 
   # Remove some optional plasma6 packages.
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
