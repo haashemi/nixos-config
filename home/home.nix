@@ -26,6 +26,16 @@
     #   };
     # };
 
+    gh-dash = {
+      enable = true;
+      # settings = {};
+    };
+
+    gh = {
+      enable = true;
+      gitCredentialHelper.enable = true;
+    };
+
     git = {
       enable = true;
       userName = "Ali Hashemi";
