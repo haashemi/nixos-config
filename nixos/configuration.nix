@@ -47,19 +47,17 @@
   users = {
     defaultUserShell = pkgs.fish;
 
-    users = {
-      ${consts.username} = {
-        createHome = true;
-        home = "/home/${consts.username}";
-        isNormalUser = true;
-        useDefaultShell = true;
-        extraGroups = [
-          "audio"
-          "wheel"
-          "docker"
-          "networkmanager"
-        ];
-      };
+    users.${consts.username} = {
+      createHome = true;
+      home = "/home/${consts.username}";
+      isNormalUser = true;
+      useDefaultShell = true;
+      extraGroups = [
+        "audio"
+        "wheel"
+        "docker"
+        "networkmanager"
+      ];
     };
   };
 
@@ -91,7 +89,6 @@
 
     # Code editors
     vscode
-    zed-editor
 
     home-manager
   ];
@@ -123,12 +120,6 @@
   # Enable automatic updates
   system.autoUpgrade.enable = true;
   system.autoUpgrade.dates = "weekly";
-
-  # Enable automatic garbage collection
-  nix.gc.automatic = true;
-  nix.gc.dates = "daily";
-  nix.gc.options = "--delete-older-than 1d";
-  nix.settings.auto-optimise-store = true;
 
   # Enable flakes
   nix.settings.experimental-features = "nix-command flakes";
