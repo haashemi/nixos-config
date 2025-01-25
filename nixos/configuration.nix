@@ -63,38 +63,10 @@
 
   # System packages and programs
   environment.systemPackages = with pkgs; [
-    # CLI: Resource monitoring
-    btop
-    htop
-    ncdu
-    ranger
-
-    # CLI
-    aria2
-    tmux
-    screen
-    neofetch
-
-    # GUI Apps
-    nekoray
-    tidal-hifi
-    google-chrome
-    telegram-desktop
-
-    # Development
-    go
-    nixd # .nix language server
-    nodejs
-    corepack
-
-    # Code editors
-    vscode
-
+    git
     home-manager
   ];
-  programs = {
-    fish.enable = true;
-  };
+  programs.fish.enable = true;
 
   # Remove some optional plasma6 packages.
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
