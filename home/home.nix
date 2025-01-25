@@ -1,41 +1,13 @@
-{ pkgs,consts, ... }:
 {
+  pkgs,
+  consts,
+  ...
+}: {
   home.username = consts.username;
   home.homeDirectory = "/home/${consts.username}";
 
   # home.file = {};
   # home.keyboard = {};
-
-  home.packages = with pkgs; [
-    # CLI: Resource monitoring
-    btop
-    htop
-    ncdu
-    ranger
-
-    # CLI
-    aria2
-    tmux
-    screen
-    neofetch
-
-    # GUI Apps
-    nekoray
-    tidal-hifi
-    google-chrome
-    telegram-desktop
-
-    # Development
-    go
-    nixd # .nix language server
-    nodejs
-    corepack
-
-    # Code editors
-    vscode
-    # zed-editor
-  ];
-
 
   programs = {
     alacritty = {

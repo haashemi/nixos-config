@@ -1,5 +1,8 @@
-{ pkgs, consts, ... }:
 {
+  pkgs,
+  consts,
+  ...
+}: {
   imports = [
     ./fonts.nix
     ./hardware-configuration.nix
@@ -63,10 +66,42 @@
 
   # System packages and programs
   environment.systemPackages = with pkgs; [
-    git
+    # CLI: Resource monitoring
+    btop
+    htop
+    ncdu
+    ranger
+
+    # CLI
+    aria2
+    tmux
+    screen
+    neofetch
+
+    # GUI Apps
+    nekoray
+    tidal-hifi
+    google-chrome
+    telegram-desktop
+
+    # Development
+    go
+    nixd # .nix language server
+    nodejs
+    corepack
+    alejandra # .nix formatter
+
+    # Code editors
+    vscode
+    # zed-editor
+
     home-manager
   ];
-  programs.fish.enable = true;
+
+  programs = {
+    fish.enable = true;
+    kdeconnect.enable = true;
+  };
 
   # Remove some optional plasma6 packages.
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
