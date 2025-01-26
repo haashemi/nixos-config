@@ -1,25 +1,38 @@
 {
   pkgs,
+  config,
   consts,
   ...
 }: {
   imports = [
-    ./fonts.nix
+    ./modules/boot.nix
+    ./modules/fonts.nix
     ./hardware-configuration.nix
   ];
 
-  # Bootloader
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-
-    systemd-boot.enable = true;
-    systemd-boot.consoleMode = "max";
-  };
+  # A 'maybe' fix slow shutdown/reboot time.
+  systemd.extraConfig = ''
+    DefaultTimeoutStopSec=10s
+  '';
 
   # Networking
   # TODO: Explore the other networking options
-  networking.hostName = consts.hostName;
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = consts.hostName;
+
+    networkmanager.enable = true;
+
+    firewall = rec {
+      allowedTCPPortRanges = [
+        # KDE Connect
+        {
+          from = 1714;
+          to = 1764;
+        }
+      ];
+      allowedUDPPortRanges = allowedTCPPortRanges;
+    };
+  };
 
   # Time zone and locale
   # TODO: Explore the other i18n options
@@ -29,6 +42,7 @@
   i18n.defaultLocale = consts.locale;
 
   # DE/DM
+  # TODO: Add sddm settings
   services.desktopManager.plasma6.enable = true;
   services.displayManager = {
     sddm.enable = true;
@@ -70,7 +84,6 @@
     btop
     htop
     ncdu
-    ranger
 
     # CLI
     aria2
@@ -93,6 +106,7 @@
 
     # Code editors
     vscode
+    # neovim
     # zed-editor
 
     home-manager
@@ -100,7 +114,6 @@
 
   programs = {
     fish.enable = true;
-    kdeconnect.enable = true;
   };
 
   # Remove some optional plasma6 packages.
@@ -116,12 +129,20 @@
   ];
 
   # Enable docker
-  virtualisation.docker = {
+  # virtualisation.docker = {
+  #   enable = true;
+  #   rootless = {
+  #     enable = true;
+  #     setSocketVariable = true;
+  #   };
+  # };
+
+  # Enable OpenGL
+  # https://wiki.nixos.org/wiki/AMD_GPU
+  # https://wiki.nixos.org/wiki/OpenGL
+  hardware.graphics = {
     enable = true;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
+    enable32Bit = true;
   };
 
   # Enable automatic updates
