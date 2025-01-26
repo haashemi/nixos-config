@@ -1,0 +1,40 @@
+{...}: {
+  programs.alacritty = {
+    enable = true;
+    # https://alacritty.org/config-alacritty.html
+    settings = {
+      env = {
+        TERM = "xterm-256color";
+      };
+      window = {
+        dynamic_padding = true;
+        decorations = "None";
+        opacity = 0.60;
+        blur = true;
+        startup_mode = "Maximized";
+        decorations_theme_variant = "Dark";
+      };
+      selection = {
+        save_to_clipboard = true;
+      };
+      cursor = {
+        style = {blinking = "On";};
+      };
+      keyboard = {
+        bindings = [
+          {
+            # CTRL + SHIFT + N = New Window
+            key = "N";
+            mods = "Control|Shift";
+            action = "CreateNewWindow";
+          }
+          {
+            # F11 = Toggle Fullscreen
+            key = "F11";
+            action = "ToggleFullscreen";
+          }
+        ];
+      };
+    };
+  };
+}
