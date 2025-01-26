@@ -21,7 +21,7 @@
         };
         window = {
           dynamic_padding = true;
-          decorations = "Transparent";
+          decorations = "None";
           opacity = 0.60;
           blur = true;
           startup_mode = "Maximized";
@@ -37,26 +37,19 @@
         keyboard = {
           bindings = [
             {
+              # CTRL + SHIFT + N = New Window
               key = "N";
               mods = "Control|Shift";
               action = "CreateNewWindow";
             }
+            {
+              # F11 = Toggle Fullscreen
+              key = "F11";
+              action = "ToggleFullscreen";
+            }
           ];
         };
       };
-    };
-
-    # bun = {
-    #   enable = true;
-    #   enableGitIntegration = true;
-    #   settings = {
-    #     telemetry = false;
-    #   };
-    # };
-
-    gh-dash = {
-      enable = true;
-      # settings = {};
     };
 
     gh = {
