@@ -27,7 +27,6 @@
           startup_mode = "Maximized";
           decorations_theme_variant = "Dark";
         };
-        # bell = {};
         selection = {
           save_to_clipboard = true;
         };
@@ -67,6 +66,16 @@
           eol = "lf";
         };
       };
+    };
+
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      plugins = with pkgs.vimPlugins; [
+        nvim-treesitter.withAllGrammars
+      ];
+      viAlias = true;
+      vimAlias = true;
     };
 
     nh = {
