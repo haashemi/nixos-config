@@ -10,6 +10,11 @@
     # It seems good to be enabled, idk.
     bootspec.enableValidation = true;
 
+    # https://wiki.archlinux.org/title/Silent_boot#sysctl
+    kernel.sysctl = {
+      "kernel.printk" = "3 3 3 3";
+    };
+
     # Basically the best linux kernel AFAIK.
     # https://wiki.archlinux.org/title/Kernel
     kernelPackages = pkgs.linuxPackages_zen;
@@ -18,6 +23,7 @@
     # https://wiki.archlinux.org/title/Silent_boot
     kernelParams = [
       "quiet"
+      "splash"
       "loglevel=3"
       "rd.udev.log_level=3"
       "systemd.show_status=auto"

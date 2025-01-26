@@ -6,7 +6,10 @@
 }: {
   imports = [
     ./modules/boot.nix
+    ./modules/desktop.nix
+    ./modules/docker.nix
     ./modules/fonts.nix
+
     ./hardware-configuration.nix
   ];
 
@@ -40,17 +43,6 @@
   time.timeZone = consts.timeZone;
 
   i18n.defaultLocale = consts.locale;
-
-  # DE/DM
-  # TODO: Add sddm settings
-  services.desktopManager.plasma6.enable = true;
-  services.displayManager = {
-    sddm.enable = true;
-    sddm.wayland.enable = true;
-
-    autoLogin.enable = true;
-    autoLogin.user = consts.username;
-  };
 
   # Swap file
   swapDevices = [
@@ -115,27 +107,6 @@
   programs = {
     fish.enable = true;
   };
-
-  # Remove some optional plasma6 packages.
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    plasma-browser-integration
-    konsole
-    elisa
-    okular
-    kate
-    khelpcenter
-    baloo-widgets
-    krdp
-  ];
-
-  # Enable docker
-  # virtualisation.docker = {
-  #   enable = true;
-  #   rootless = {
-  #     enable = true;
-  #     setSocketVariable = true;
-  #   };
-  # };
 
   # Enable OpenGL
   # https://wiki.nixos.org/wiki/AMD_GPU
