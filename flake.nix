@@ -5,18 +5,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
-    plasma-manager,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -57,10 +51,7 @@
       ${consts.username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {inherit inputs outputs consts;};
-        modules = [
-          inputs.plasma-manager.homeManagerModules.plasma-manager
-          ./home/home.nix
-        ];
+        modules = [./home/home.nix];
       };
     };
   };
