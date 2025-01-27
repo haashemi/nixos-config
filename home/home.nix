@@ -9,7 +9,6 @@
     ./programs/git.nix
     ./programs/neovim.nix
     ./programs/nh.nix
-    ./programs/plasma.nix
     ./programs/ranger.nix
   ];
 
