@@ -9,9 +9,12 @@
   # TODO: gtk = {};
 
   home = {
-    # TODO: link all config files with this.
     file = {
-      ".config/zed/settings.json".source = impurity.link ../../../dotfiles/zed/settings.json;
+      ".config/zed" = {
+        force = true;
+        source = impurity.link ../../../dotfiles/zed;
+        recursive = true;
+      };
     };
 
     username = "ali";
@@ -131,6 +134,5 @@
   };
 
   # TODO: wayland = {};
-  # TODO: xdg = {};
   # TODO: xsession = {};
 }

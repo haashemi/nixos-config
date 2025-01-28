@@ -3,7 +3,7 @@
 {
   "ui_font_size": 17,
   "buffer_font_size": 20,
-  "theme": "Atelier Cave Dark",
+  "theme": "JetBrains New Dark",
   "languages": {
     "Nix": {
       "language_servers": ["nil", "!nixd"],

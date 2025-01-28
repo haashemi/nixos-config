@@ -24,6 +24,7 @@
   in {
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
+    # nh os switch .
     # sudo nixos-rebuild switch --flake .
     nixosConfigurations = {
       g15 = nixpkgs.lib.nixosSystem {
@@ -32,7 +33,8 @@
       };
     };
 
-    # IMPURITY_PATH=$(pwd) home-manager switch --flake . --show-trace --impure
+    # IMPURITY_PATH=$(pwd) nh home switch . -- --impure
+    # IMPURITY_PATH=$(pwd) home-manager switch --flake . --impure
     homeConfigurations = {
       "ali@g15" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
