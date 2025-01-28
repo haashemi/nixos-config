@@ -1,5 +1,6 @@
 {
   impurity,
+  config,
   pkgs,
   ...
 }: {
@@ -10,11 +11,7 @@
 
   home = {
     file = {
-      ".config/zed" = {
-        force = true;
-        source = impurity.link ../../../dotfiles/zed;
-        recursive = true;
-      };
+      ".config/zed/settings.json".source = impurity.link ../../../dotfiles/zed/settings.json;
     };
 
     username = "ali";
@@ -134,5 +131,21 @@
   };
 
   # TODO: wayland = {};
+
+  xdg = {
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+      desktop = "${config.home.homeDirectory}/Home/Desktop";
+      documents = "${config.home.homeDirectory}/Home/Documents";
+      download = "${config.home.homeDirectory}/Home/Downloads";
+      music = "${config.home.homeDirectory}/Home/Music";
+      pictures = "${config.home.homeDirectory}/Home/Pictures";
+      publicShare = "${config.home.homeDirectory}/Home/Public";
+      templates = "${config.home.homeDirectory}/Home/Templates";
+      videos = "${config.home.homeDirectory}/Home/Videos";
+    };
+  };
+
   # TODO: xsession = {};
 }
