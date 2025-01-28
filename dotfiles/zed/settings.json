@@ -1,10 +1,9 @@
 // Zed settings
 // documentation: https://zed.dev/docs/configuring-zed
 {
-  "ui_font_size": 16,
-  "buffer_font_size": 16,
-  "theme": "Andromeda",
-
+  "ui_font_size": 17,
+  "buffer_font_size": 20,
+  "theme": "Atelier Cave Dark",
   "languages": {
     "Nix": {
       "language_servers": ["nil", "!nixd"],

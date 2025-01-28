@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  impurity,
+  pkgs,
+  ...
+}: {
   # TODO: dconf.settings = {};
   # TODO: editorconfig = { };
   # TODO: fonts.fontconfig = {};
@@ -7,10 +11,7 @@
   home = {
     # TODO: link all config files with this.
     file = {
-      ".config/zed" = {
-        source = ../../dotfiles/zed;
-        recursive = true;
-      };
+      ".config/zed/settings.json".source = impurity.link ../../../dotfiles/zed/settings.json;
     };
 
     username = "ali";
@@ -26,6 +27,13 @@
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "23.05";
+  };
+
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      input-fonts.acceptLicense = true;
+    };
   };
 
   programs = {
