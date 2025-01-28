@@ -1,22 +1,9 @@
+{ pkgs, consts, ... }:
 {
-  pkgs,
-  consts,
-  ...
-}: {
-  # TODO:
-  # dconf.settings = {};
-
-  # TODO:
-  # editorconfig = {
-  #   enable = true;
-  #   settings = {};
-  # };
-
-  # TODO: Is it useful?
-  # fonts.fontconfig = {};
-
-  # TODO: Should I?
-  # gtk = {};
+  # TODO: dconf.settings = {};
+  # TODO: editorconfig = { };
+  # TODO: fonts.fontconfig = {};
+  # TODO: gtk = {};
 
   home = {
     # TODO: link all config files with this.
@@ -31,22 +18,6 @@
     #   model = "";
     #   options = [];
     #   variant = "";
-    # };
-
-    # TODO: Maybe use this instead of nixos one?
-    # language = {
-    #   address = "";
-    #   base = "";
-    #   collate = "";
-    #   ctype = "";
-    #   measurement = "";
-    #   messages = "";
-    #   monetary = "";
-    #   name = "";
-    #   numeric = "";
-    #   paper = "";
-    #   telephone = "";
-    #   time = "";
     # };
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
@@ -73,7 +44,9 @@
           save_to_clipboard = true;
         };
         cursor = {
-          style = {blinking = "On";};
+          style = {
+            blinking = "On";
+          };
         };
         keyboard = {
           bindings = [
@@ -133,10 +106,7 @@
     };
   };
 
-  # TODO: Should I?
-  # qt = {
-  #   enable = true;
-  # };
+  # TODO: qt = {};
 
   services = {
     kdeconnect = {
@@ -150,8 +120,7 @@
     user.startServices = "sd-switch";
   };
 
-  # TODO:
-  # wayland
-  # xdg
-  # xsession
+  # TODO: wayland = {};
+  # TODO: xdg = {};
+  # TODO: xsession = {};
 }
