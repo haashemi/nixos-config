@@ -12,43 +12,22 @@
     nixpkgs,
     home-manager,
     ...
-  } @ inputs: let
-    inherit (self) outputs;
-    system = "x86_64-linux";
-
-    consts = {
-      username = "ali";
-      hostName = "g15";
-
-      locale = "en_US.UTF-8";
-      timeZone = "Asia/Tehran";
-    };
-
-    pkgs = import nixpkgs {
-      inherit system;
-
-      config.allowUnfree = true;
-      config.input-fonts.acceptLicense = true;
-    };
-  in {
-    # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#nixos'
+  } @ inputs: {
     nixosConfigurations = {
-      ${consts.hostName} = nixpkgs.lib.nixosSystem {
-        inherit pkgs;
-        specialArgs = {inherit inputs outputs consts;};
-        system = system;
-        modules = [./nixos/configuration.nix];
-      };
-    };
+      g15 = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/g15/configuration.nix
 
-    # Home Manager configuration entrypoint
-    # Available through 'home-manager --flake .#username@hostname'
-    homeConfigurations = {
-      ${consts.username} = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {inherit inputs outputs consts;};
-        modules = [./home/home.nix];
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.users.ali = import ./hosts/g15/home/ali.nix;
+          }
+        ];
       };
     };
   };

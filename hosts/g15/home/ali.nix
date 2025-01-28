@@ -1,8 +1,4 @@
-{
-  pkgs,
-  consts,
-  ...
-}: {
+{pkgs, ...}: {
   # TODO: dconf.settings = {};
   # TODO: editorconfig = { };
   # TODO: fonts.fontconfig = {};
@@ -12,13 +8,13 @@
     # TODO: link all config files with this.
     file = {
       ".config/zed" = {
-        source = "./dotfiles/zed";
+        source = ../../dotfiles/zed;
         recursive = true;
       };
     };
 
-    username = consts.username;
-    homeDirectory = "/home/${consts.username}";
+    username = "ali";
+    homeDirectory = "/home/ali";
 
     # TODO: Maybe use this instead of nixos one?
     # keyboard = {
@@ -103,7 +99,7 @@
 
     nh = {
       enable = true;
-      flake = "/home/${consts.username}/nixos";
+      flake = "/home/ali/nixos";
     };
 
     ranger = {

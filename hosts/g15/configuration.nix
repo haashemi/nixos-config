@@ -1,6 +1,10 @@
-{ pkgs, consts, ... }:
-{
-  imports = [ ./hardware-configuration.nix ];
+{pkgs, ...}: let
+  username = "ali";
+  hostName = "g15";
+  locale = "en_US.UTF-8";
+  timeZone = "Asia/Tehran";
+in {
+  imports = [./hardware-configuration.nix];
 
   boot = {
     # Clean boot screen [1/3]
@@ -169,13 +173,13 @@
   };
 
   i18n = {
-    defaultLocale = consts.locale;
+    defaultLocale = locale;
     # TODO: Fix perl locale issue
   };
 
   # TODO: More research required
   networking = {
-    hostName = consts.hostName;
+    hostName = hostName;
 
     networkmanager.enable = true;
 
@@ -199,12 +203,19 @@
 
     optimise = {
       automatic = true;
-      dates = [ "00:00" ];
+      dates = ["00:00"];
     };
 
     settings = {
       auto-optimise-store = true;
       experimental-features = "nix-command flakes";
+    };
+  };
+
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      input-fonts.acceptLicense = true;
     };
   };
 
@@ -221,7 +232,7 @@
       sddm.wayland.enable = true;
 
       autoLogin.enable = true;
-      autoLogin.user = consts.username;
+      autoLogin.user = username;
     };
   };
 
@@ -249,15 +260,15 @@
 
   time = {
     hardwareClockInLocalTime = true;
-    timeZone = consts.timeZone;
+    timeZone = timeZone;
   };
 
   users = {
     defaultUserShell = pkgs.fish;
 
-    users.${consts.username} = {
+    users.${username} = {
       createHome = true;
-      home = "/home/${consts.username}";
+      home = "/home/ali";
       isNormalUser = true;
       useDefaultShell = true;
       extraGroups = [
@@ -271,12 +282,13 @@
 
   virtualisation.docker = {
     enable = true;
+    # TODO: use nvidia-container
     enableNvidia = true;
     enableOnBoot = true;
     autoPrune = {
       enable = true;
       dates = "weekly";
-      flags = [ "--all" ];
+      flags = ["--all"];
     };
 
     rootless = {
