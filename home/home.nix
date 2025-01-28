@@ -1,5 +1,8 @@
-{ pkgs, consts, ... }:
 {
+  pkgs,
+  consts,
+  ...
+}: {
   # TODO: dconf.settings = {};
   # TODO: editorconfig = { };
   # TODO: fonts.fontconfig = {};
@@ -7,7 +10,12 @@
 
   home = {
     # TODO: link all config files with this.
-    # file = {};
+    file = {
+      ".config/zed" = {
+        source = "./dotfiles/zed";
+        recursive = true;
+      };
+    };
 
     username = consts.username;
     homeDirectory = "/home/${consts.username}";
@@ -105,8 +113,6 @@
       };
     };
   };
-
-  # TODO: qt = {};
 
   services = {
     kdeconnect = {
