@@ -12,6 +12,7 @@
   home = {
     file = {
       ".config/zed/settings.json".source = impurity.link ../../../dotfiles/zed/settings.json;
+      ".local/share/zed/extensions/index.json".source = impurity.link ../../../dotfiles/zed/extensions.json;
     };
 
     username = "ali";
