@@ -1,7 +1,7 @@
 // Zed settings
 // documentation: https://zed.dev/docs/configuring-zed
 {
-  "ui_font_size": 17,
+  "ui_font_size": 20,
   "buffer_font_size": 20,
   "theme": "JetBrains New Dark",
   "languages": {
@@ -11,5 +11,9 @@
         "external": { "command": "alejandra" }
       }
     }
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
   }
 }
