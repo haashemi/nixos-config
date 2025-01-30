@@ -31,8 +31,8 @@ in {
     kernelParams = [
       "quiet"
       "splash"
-      "loglevel=3"
-      "rd.udev.log_level=3"
+      "loglevel=0"
+      "rd.udev.log_level=0"
       "systemd.show_status=auto"
     ];
 
@@ -96,6 +96,9 @@ in {
       # Code editors
       vscode
       zed-editor
+
+      # Games
+      prismlauncher
 
       home-manager
     ];
@@ -169,12 +172,28 @@ in {
       enable32Bit = true;
     };
 
-    # TODO: nvidia = { };
+    nvidia = {
+      modesetting.enable = true;
+      open = true;
+
+      prime = {
+        amdgpuBusId = "PCI:6:0:0";
+        nvidiaBusId = "PCI:1:0:0";
+
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
+      };
+    };
+
+    nvidia-container-toolkit = {
+      enable = true;
+    };
   };
 
   i18n = {
     defaultLocale = locale;
-    # TODO: Fix perl locale issue
   };
 
   # TODO: More research required
@@ -234,6 +253,10 @@ in {
       autoLogin.enable = true;
       autoLogin.user = username;
     };
+
+    xserver = {
+      videoDrivers = ["nvidia"];
+    };
   };
 
   swapDevices = [
@@ -282,8 +305,6 @@ in {
 
   virtualisation.docker = {
     enable = true;
-    # TODO: use nvidia-container
-    enableNvidia = true;
     enableOnBoot = true;
     autoPrune = {
       enable = true;
