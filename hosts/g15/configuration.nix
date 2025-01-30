@@ -270,13 +270,6 @@ in {
     };
   };
 
-  swapDevices = [
-    {
-      size = 16 * 1024;
-      device = "/var/lib/swapfile";
-    }
-  ];
-
   # Enable automatic updates
   system = {
     autoUpgrade = {

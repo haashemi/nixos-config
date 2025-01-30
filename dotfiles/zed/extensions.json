@@ -118,6 +118,95 @@
         "snippets": null
       },
       "dev": false
+    },
+    "wakatime": {
+      "manifest": {
+        "id": "wakatime",
+        "name": "wakatime",
+        "version": "0.1.7",
+        "schema_version": 1,
+        "description": "Wakatime support.",
+        "repository": "https://github.com/wakatime/zed-wakatime",
+        "authors": [
+          "bestgopher <84328409@qq.com>"
+        ],
+        "lib": {
+          "kind": "Rust",
+          "version": "0.0.6"
+        },
+        "themes": [],
+        "languages": [],
+        "grammars": {},
+        "language_servers": {
+          "wakatime": {
+            "language": null,
+            "languages": [
+              "AsciiDoc",
+              "Astro",
+              "Bash",
+              "Biome",
+              "C",
+              "C++",
+              "Clojure",
+              "CSharp",
+              "CSS",
+              "CSV",
+              "D",
+              "Dart",
+              "Elixir",
+              "Elm",
+              "Erlang",
+              "Fish",
+              "FSharp",
+              "GDScript",
+              "Gleam",
+              "Go",
+              "GraphQL",
+              "Haskell",
+              "HEEX",
+              "HTML",
+              "Hy",
+              "Idris",
+              "Java",
+              "JavaScript",
+              "JSON",
+              "JSONC",
+              "Julia",
+              "Kotlin",
+              "Lua",
+              "Markdown",
+              "Nim",
+              "Nix",
+              "OCaml",
+              "PureScript",
+              "Python",
+              "Racket",
+              "Roc",
+              "Ruby",
+              "Rust",
+              "Scheme",
+              "SCSS",
+              "Shell Script",
+              "SQL",
+              "Swift",
+              "TOML",
+              "TSX",
+              "TypeScript",
+              "WIT",
+              "XML",
+              "YAML",
+              "Zig"
+            ],
+            "language_ids": {},
+            "code_action_kinds": null
+          }
+        },
+        "context_servers": {},
+        "slash_commands": {},
+        "indexed_docs_providers": {},
+        "snippets": null
+      },
+      "dev": false
     }
   },
   "themes": {
