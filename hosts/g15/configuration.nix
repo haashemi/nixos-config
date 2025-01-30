@@ -6,44 +6,47 @@
 in {
   imports = [./hardware-configuration.nix];
 
+  # Plymouth:       https://wiki.archlinux.org/title/Plymouth
+  # Silent boot:    https://wiki.archlinux.org/title/Silent_boot
+  # Kernel choice:  https://wiki.archlinux.org/title/Kernel
   boot = {
-    # Clean boot screen [1/3]
     consoleLogLevel = 0;
-
-    # Clean boot screen [2/3]
     initrd.verbose = false;
 
     # TODO: Learn more about bootspec.
     # It seems good to be enabled, idk.
     bootspec.enableValidation = true;
 
-    # https://wiki.archlinux.org/title/Silent_boot#sysctl
     kernel.sysctl = {
       "kernel.printk" = "3 3 3 3";
     };
 
-    # Basically the best linux kernel AFAIK.
-    # https://wiki.archlinux.org/title/Kernel
     kernelPackages = pkgs.linuxPackages_zen;
 
-    # Clean boot screen [3/3]
-    # https://wiki.archlinux.org/title/Silent_boot
     kernelParams = [
       "quiet"
       "splash"
       "loglevel=0"
+      "boot.shell_on_fail"
       "rd.udev.log_level=0"
-      "systemd.show_status=auto"
+      "udev.log_priority=3"
+      "rd.systemd.show_status=auto"
     ];
 
-    # UEFI Boot settings
     loader = {
       efi.canTouchEfiVariables = true;
 
       systemd-boot.enable = true;
       systemd-boot.editor = false;
 
-      timeout = 5;
+      timeout = 0;
+    };
+
+    plymouth = {
+      enable = true;
+      extraConfig = ''
+        UseFirmwareBackground=true
+      '';
     };
   };
 
@@ -81,6 +84,7 @@ in {
 
       # GUI Apps
       nekoray
+      discord
       tidal-hifi
       google-chrome
       telegram-desktop
@@ -252,6 +256,7 @@ in {
   programs = {
     fish.enable = true;
     nix-ld.enable = true;
+    steam.enable = true;
   };
 
   services = {
