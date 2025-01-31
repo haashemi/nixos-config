@@ -14,21 +14,13 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
-    systems = [
-      "aarch64-linux"
-      "x86_64-linux"
-    ];
-    forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
     # Formatter for your nix files, available through 'nix fmt'
     # Other options beside 'alejandra' include 'nixpkgs-fmt'
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+    formatter = nixpkgs.alejandra;
 
-    # Reusable nixos modules you might want to export
-    # These are usually stuff you would upstream into nixpkgs
+    # Reusable nixos and home-manager modules
     nixosModules = import ./modules/nixos;
-    # Reusable home-manager modules you might want to export
-    # These are usually stuff you would upstream into home-manager
     homeManagerModules = import ./modules/home-manager;
 
     # NixOS configuration entrypoint
@@ -38,6 +30,7 @@
     nixosConfigurations = {
       g15 = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
+        system = "x86_64-linux";
         modules = [./nixos/g15/configuration.nix];
       };
     };
