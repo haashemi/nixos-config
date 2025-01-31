@@ -4,7 +4,7 @@
   locale = "en_US.UTF-8";
   timeZone = "Asia/Tehran";
 in {
-  imports = [./hardware-configuration.nix];
+  imports = [./hardware.nix];
 
   # Plymouth:       https://wiki.archlinux.org/title/Plymouth
   # Silent boot:    https://wiki.archlinux.org/title/Silent_boot
@@ -239,13 +239,6 @@ in {
     settings = {
       auto-optimise-store = true;
       experimental-features = "nix-command flakes";
-    };
-  };
-
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      input-fonts.acceptLicense = true;
     };
   };
 
