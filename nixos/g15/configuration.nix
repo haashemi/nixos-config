@@ -50,10 +50,6 @@ in {
     };
   };
 
-  documentation = {
-    enable = false;
-  };
-
   environment = {
     homeBinInPath = true;
     localBinInPath = true;

@@ -7,31 +7,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1738200030,
-        "narHash": "sha256-z2DVxun8fEH0yeVIyfL68hXht+k2h3vEwNVxJPOMCgU=",
+        "lastModified": 1738275749,
+        "narHash": "sha256-PM+cGduJ05EZ+YXulqAwUFjvfKpPmW080mcuN6R1POw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "86a0d627cae02e8cc5d29eeb03de97f8c652a4bb",
+        "rev": "a8159195bfaef3c64df75d3b1e6a68d49d392be9",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "impurity": {
-      "locked": {
-        "lastModified": 1689836741,
-        "narHash": "sha256-82KeRg2sAqDXCdzVs8P8GoqVaPsZjkWgrfsj6kgOLTY=",
-        "owner": "outfoxxed",
-        "repo": "impurity.nix",
-        "rev": "bbc41b69ab5485cd55aa315d08cff865781d3913",
-        "type": "github"
-      },
-      "original": {
-        "owner": "outfoxxed",
-        "repo": "impurity.nix",
         "type": "github"
       }
     },
@@ -54,7 +39,6 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "impurity": "impurity",
         "nixpkgs": "nixpkgs"
       }
     }

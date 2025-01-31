@@ -1,33 +1,27 @@
 {
-  impurity,
   config,
   pkgs,
   ...
 }: {
+  home.username = "ali";
+  home.homeDirectory = "/home/ali";
+
   # TODO: dconf.settings = {};
   # TODO: editorconfig = { };
   # TODO: fonts.fontconfig = {};
   # TODO: gtk = {};
 
-  home = {
-    file = {
-      ".config/zed/settings.json".source = impurity.link ../../../dotfiles/zed/settings.json;
-    };
+  # home.file = {
+  #   ".config/zed/settings.json".source = impurity.link ../../../dotfiles/zed/settings.json;
+  # };
 
-    username = "ali";
-    homeDirectory = "/home/ali";
-
-    # TODO: Maybe use this instead of nixos one?
-    # keyboard = {
-    #   layout = "";
-    #   model = "";
-    #   options = [];
-    #   variant = "";
-    # };
-
-    # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-    stateVersion = "23.05";
-  };
+  # TODO: Maybe use this instead of nixos one?
+  # keyboard = {
+  #   layout = "";
+  #   model = "";
+  #   options = [];
+  #   variant = "";
+  # };
 
   nixpkgs = {
     config = {
@@ -63,7 +57,6 @@
         keyboard = {
           bindings = [
             {
-              # CTRL + SHIFT + N = New Window
               key = "N";
               mods = "Control|Shift";
               action = "CreateNewWindow";
@@ -93,6 +86,10 @@
           eol = "lf";
         };
       };
+    };
+
+    mpv = {
+      enable = true;
     };
 
     neovim = {
@@ -148,4 +145,7 @@
   };
 
   # TODO: xsession = {};
+
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  home.stateVersion = "23.05";
 }
