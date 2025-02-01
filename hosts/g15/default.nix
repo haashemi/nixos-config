@@ -100,7 +100,12 @@ in {
       # Games
       prismlauncher
 
-      home-manager
+      # NOT CATEGORIZED, YET
+      gh
+      mpv
+      neovim # Maybe use the 'program' one?
+      ranger
+      alacritty
     ];
   };
 
@@ -242,8 +247,17 @@ in {
     };
   };
 
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      input-fonts.acceptLicense = true;
+    };
+  };
+
   programs = {
     fish.enable = true;
+    git.enable = true;
+    # hyprland = true;
     nix-ld.enable = true;
     steam.enable = true;
   };

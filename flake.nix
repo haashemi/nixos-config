@@ -1,30 +1,19 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    snowfall-lib = {
-      url = "github:snowfallorg/lib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = inputs:
-    inputs.snowfall-lib.mkFlake {
-      inherit inputs;
-      src = ./.;
+  outputs = {nixpkgs, ...}: let
+    systems = ["x86_64-linux"];
 
-      channels-config = {
-        allowUnfree = true;
-        input-fonts.acceptLicense = true;
-      };
+    forAllSystems = nixpkgs.lib.genAttrs systems;
+  in {
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-      outputs-builder = channels: {
-        formatter = channels.nixpkgs.alejandra;
+    nixosConfigurations = {
+      g15 = nixpkgs.lib.nixosSystem {
+        modules = [./hosts/g15];
       };
     };
+  };
 }
