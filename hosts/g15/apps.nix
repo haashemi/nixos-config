@@ -36,7 +36,6 @@
     alejandra # .nix formatter
 
     # Code editors
-    vscode
     zed-editor
 
     # Games
