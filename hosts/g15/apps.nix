@@ -1,16 +1,24 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  pkgs-stable,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     # CLI: Resource monitoring
-    btop
-    htop
-    ncdu
+    btop # Resource monitor
+    htop # Process viewer
+    ncdu # Disk usage
 
     # CLI
-    aria2
-    tmux
-    screen
-    neofetch
-    ffmpeg
+    unzip
+    stow # Dotfiles manager
+    aria2 # Download manager
+    tmux # Terminal multiplexer
+    screen # Terminal multiplexer
+    neofetch # System information
+
+    # Encoding stuff
+    (pkgs-stable.ffmpeg-full.override {withX265 = true;})
 
     # GUI Apps
     nekoray
@@ -47,6 +55,7 @@
     git.enable = true;
     nix-ld.enable = true;
     steam.enable = true;
+    thunar.enable = true;
   };
 
   services = {
