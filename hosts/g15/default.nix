@@ -165,7 +165,7 @@ in {
 
     printing = {
       enable = true;
-      drivers = [pkgs.foo2zjs];
+      drivers = [pkgs.foo2zjs]; # HP Laserjet Pro m12a driver
     };
 
     # Asus Linux - GPU Manager
@@ -212,16 +212,10 @@ in {
 
   virtualisation.docker = {
     enable = true;
-    enableOnBoot = true;
     autoPrune = {
       enable = true;
       dates = "weekly";
       flags = ["--all"];
-    };
-
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
     };
   };
 
