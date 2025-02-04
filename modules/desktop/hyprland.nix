@@ -19,31 +19,47 @@ in {
       };
     };
 
-    programs = {
-      hyprland = {
-        enable = true;
-        systemd.setPath.enable = true;
-        withUWSM = true;
-        xwayland.enable = true;
-      };
-      waybar.enable = true;
-      nm-applet.enable = true;
+    programs.hyprland = {
+      enable = true;
+      systemd.setPath.enable = true;
+      withUWSM = true;
+      xwayland.enable = true;
     };
 
     environment.systemPackages = with pkgs; [
-      grim # Screenshot: Grab images from a Wayland compositor
-      slurp # Screenshot: Select a region in a Wayland compositor
       dunst # Notification daemon
-      udiskie # Removable disk automounter
-      nautilus # File manager
-      cliphist # Clipboard manager
-      hyprpaper # Wayland wallpaper utility
-      overskride # Bluetooth and Obex client
-      wl-clipboard # Clipboard manager
-      rofi-wayland # Window switcher / App runner
-      brightnessctl # Device brightness controller
+      waybar # Statusbar
+      hyprlock # Lock screen
+      hypridle # Idle manager
+      hyprpaper # Wallpaper manager
+      rofi-wayland # Application launcher
+      brightnessctl # Brightness controller
       hyprpolkitagent # Authentication agent
-      playerctl # Waybar/MPRIS: media player controller
+
+      ############
+      # Screenshot
+      grim
+      slurp
+
+      ###################
+      # Clipboard manager
+      cliphist
+      wl-clipboard
+
+      #######################
+      # Theming
+      nordic # GTK 3 theme
+      nwg-look # GTK theme
+
+      #######################
+      # Common applications
+      nautilus # File manager
+      overskride # Bluetooth client TODO: Move it somewhere else
+      pavucontrol # Sound control TODO: Move it somewhere else
+
+      ###############################
+      # TODO: Configure ir
+      udiskie # Removable disk automounter
     ];
 
     # Authentication agents
