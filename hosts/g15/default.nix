@@ -67,6 +67,7 @@ in {
       alejandra # .nix formatter
 
       # Code editors
+      neovim
       zed-editor
 
       # Games
@@ -75,7 +76,6 @@ in {
       # NOT CATEGORIZED, YET
       gh
       mpv
-      neovim # Maybe use the 'program' one?
       ranger
       alacritty
     ];
@@ -122,19 +122,7 @@ in {
 
   networking = {
     hostName = hostName;
-
     networkmanager.enable = true;
-
-    firewall = rec {
-      allowedTCPPortRanges = [
-        # KDE Connect
-        {
-          from = 1714;
-          to = 1764;
-        }
-      ];
-      allowedUDPPortRanges = allowedTCPPortRanges;
-    };
   };
 
   nix = {
