@@ -47,11 +47,6 @@ in {
       wl-clipboard
 
       #######################
-      # Theming
-      nordic # GTK 3 theme
-      nwg-look # GTK theme
-
-      #######################
       # Common applications
       nautilus # File manager
       overskride # Bluetooth client TODO: Move it somewhere else

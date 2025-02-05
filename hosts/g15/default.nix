@@ -11,6 +11,7 @@ in {
     ../../modules/boot
     ../../modules/desktop
     ../../modules/fonts
+    ../../modules/themes
 
     ./hardware.nix
   ];
