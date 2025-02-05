@@ -32,9 +32,9 @@ in {
       hyprlock # Lock screen
       hypridle # Idle manager
       hyprpaper # Wallpaper manager
+      polkit_gnome # Authentication agent
       rofi-wayland # Application launcher
       brightnessctl # Brightness controller
-      hyprpolkitagent # Authentication agent
 
       ############
       # Screenshot
@@ -59,14 +59,14 @@ in {
 
     # Authentication agents
     security.polkit.enable = true;
-    systemd.user.services.hyprpolkitagent = {
-      description = "Polkit authentication agent for Hyprland";
+    systemd.user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
       wantedBy = ["graphical-session.target"];
       wants = ["graphical-session.target"];
       after = ["graphical-session.target"];
       serviceConfig = {
         Type = "simple";
-        ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;
