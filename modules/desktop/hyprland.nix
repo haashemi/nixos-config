@@ -18,13 +18,13 @@ in {
         sddm.wayland.enable = true;
       };
 
-      # Browsing samba shares
+      # Browsing samba shares (for xfce.thunar)
       gvfs = {
         enable = true;
         package = lib.mkForce pkgs.gnome.gvfs;
       };
 
-      # Auto mount removable disks
+      # Auto mount removable disks (for xfce.thunar)
       udisks2 = {
         enable = true;
         mountOnMedia = true;
@@ -60,9 +60,9 @@ in {
 
       #######################
       # Common applications
-      xfce.thunar # Filebrowser
       overskride # Bluetooth client
       pavucontrol # Sound control
+      xfce.thunar # Filebrowser
     ];
 
     # Authentication agents

@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   config,
   ...
 }:
@@ -26,16 +25,20 @@ in {
         package = config.boot.kernelPackages.nvidiaPackages.latest;
 
         prime = {
+          # TODO: Set these from the host!
           amdgpuBusId = "PCI:6:0:0";
           nvidiaBusId = "PCI:1:0:0";
 
-          offload = {
-            enable = true;
-            enableOffloadCmd = true;
-          };
+          # Not sure which one is better.
+          sync.enable = true;
+          # offload = {
+          #   enable = true;
+          #   enableOffloadCmd = true;
+          # };
         };
       };
 
+      # TODO: Maybe move it to a `docker.nix`-like file?
       nvidia-container-toolkit = {
         enable = true;
       };

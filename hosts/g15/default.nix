@@ -1,8 +1,4 @@
-{
-  pkgs,
-  pkgs-stable,
-  ...
-}: let
+{pkgs, ...}: let
   username = "ali";
   hostName = "g15";
   timeZone = "Asia/Tehran";
@@ -10,81 +6,21 @@ in {
   imports = [
     ../../modules
     ./hardware.nix
+    ./programs.nix
   ];
 
   hx = {
-    boot.enableModifications = true;
-    boot.plymouth.enable = true;
-    boot.silent.enable = true;
+    boot.enable = true;
+    boot.silent = true;
+    boot.plymouth = true;
 
     desktop.hyprland.enable = true;
 
     nvidia.enable = true;
     nvidia.enableToolkit = true;
-
+    power.enable = true;
     fonts.enable = true;
     themes.enable = true;
-  };
-
-  # Enable auto login
-  services.displayManager = {
-    autoLogin.enable = true;
-    autoLogin.user = username;
-  };
-
-  # TODO: Modularize everything from this line
-
-  environment = {
-    homeBinInPath = true;
-    localBinInPath = true;
-
-    systemPackages = with pkgs; [
-      # CLI: Resource monitoring
-      btop # Resource monitor
-      htop # Process viewer
-      ncdu # Disk usage
-
-      # CLI
-      unzip
-      stow # Dotfiles manager
-      aria2 # Download manager
-      tmux # Terminal multiplexer
-      screen # Terminal multiplexer
-      neofetch # System information
-
-      # Encoding stuff
-      pkgs-stable.ffmpeg-full
-
-      # GUI Apps
-      nekoray
-      discord
-      tidal-hifi
-      google-chrome
-      telegram-desktop
-
-      # Development
-      go
-      nil # .nix language server
-      nixd # .nix language server
-      hyprls # hyprland language server
-      nodejs
-      corepack
-      alejandra # .nix formatter
-
-      # Code editors
-      neovim
-      vscode-fhs
-      zed-editor
-
-      # Games
-      prismlauncher
-
-      # NOT CATEGORIZED, YET
-      gh
-      mpv
-      ranger
-      alacritty
-    ];
   };
 
   hardware = {
@@ -104,38 +40,8 @@ in {
 
   networking = {
     hostName = hostName;
+    nameservers = ["1.1.1.1"];
     networkmanager.enable = true;
-  };
-
-  nix = {
-    gc = {
-      automatic = true;
-      dates = "00:00";
-    };
-
-    optimise = {
-      automatic = true;
-      dates = ["00:00"];
-    };
-
-    settings = {
-      auto-optimise-store = true;
-      experimental-features = "nix-command flakes";
-    };
-  };
-
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      input-fonts.acceptLicense = true;
-    };
-  };
-
-  programs = {
-    fish.enable = true;
-    git.enable = true;
-    nix-ld.enable = true;
-    steam.enable = true;
   };
 
   services = {
@@ -145,6 +51,13 @@ in {
       enableUserService = true;
     };
 
+    # Enable auto login
+    displayManager = {
+      autoLogin.enable = true;
+      autoLogin.user = username;
+    };
+
+    # Enable printer drivers
     printing = {
       enable = true;
       drivers = [pkgs.foo2zjs]; # HP Laserjet Pro m12a driver
@@ -154,22 +67,7 @@ in {
     supergfxd.enable = true;
   };
 
-  # Enable automatic updates
-  system = {
-    autoUpgrade = {
-      enable = true;
-      dates = "weekly";
-    };
-
-    switch = {
-      enableNg = true;
-    };
-  };
-
-  time = {
-    hardwareClockInLocalTime = true;
-    timeZone = timeZone;
-  };
+  time.timeZone = timeZone;
 
   users = {
     defaultUserShell = pkgs.fish;
@@ -185,15 +83,6 @@ in {
         "docker"
         "networkmanager"
       ];
-    };
-  };
-
-  virtualisation.docker = {
-    enable = true;
-    autoPrune = {
-      enable = true;
-      dates = "weekly";
-      flags = ["--all"];
     };
   };
 
