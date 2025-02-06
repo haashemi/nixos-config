@@ -10,10 +10,11 @@
     ncdu # Disk usage
 
     # CLI
-    unzip
+    tmux # Terminal multiplexer
     stow # Dotfiles manager
     aria2 # Download manager
-    tmux # Terminal multiplexer
+    unzip
+    ranger # File browser
     screen # Terminal multiplexer
     neofetch # System information
 
@@ -21,13 +22,17 @@
     pkgs-stable.ffmpeg-full
 
     # GUI Apps
+    mpv
     nekoray
     discord
+    alacritty
     tidal-hifi
     google-chrome
+    onlyoffice-bin # MS-Office alternative
     telegram-desktop
 
     # Development
+    gh
     go
     nixd # .nix language server
     hyprls # hyprland language server
@@ -41,12 +46,6 @@
 
     # Games
     prismlauncher
-
-    # NOT CATEGORIZED, YET
-    gh
-    mpv
-    ranger
-    alacritty
   ];
 
   programs = {
