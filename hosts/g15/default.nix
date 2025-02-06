@@ -19,6 +19,9 @@ in {
 
     desktop.hyprland.enable = true;
 
+    nvidia.enable = true;
+    nvidia.enableToolkit = true;
+
     fonts.enable = true;
     themes.enable = true;
   };
@@ -97,30 +100,6 @@ in {
     };
 
     cpu.amd.updateMicrocode = true;
-
-    graphics = {
-      enable = true;
-      enable32Bit = true;
-    };
-
-    nvidia = {
-      modesetting.enable = true;
-      open = true;
-
-      prime = {
-        amdgpuBusId = "PCI:6:0:0";
-        nvidiaBusId = "PCI:1:0:0";
-
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
-        };
-      };
-    };
-
-    nvidia-container-toolkit = {
-      enable = true;
-    };
   };
 
   networking = {
@@ -173,10 +152,6 @@ in {
 
     # Asus Linux - GPU Manager
     supergfxd.enable = true;
-
-    xserver = {
-      videoDrivers = ["nvidia"];
-    };
   };
 
   # Enable automatic updates
