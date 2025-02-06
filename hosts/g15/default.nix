@@ -63,12 +63,14 @@ in {
       go
       nil # .nix language server
       nixd # .nix language server
+      hyprls # hyprland language server
       nodejs
       corepack
       alejandra # .nix formatter
 
       # Code editors
       neovim
+      vscode-fhs
       zed-editor
 
       # Games
