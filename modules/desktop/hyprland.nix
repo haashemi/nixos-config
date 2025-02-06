@@ -17,6 +17,18 @@ in {
         sddm.enable = true;
         sddm.wayland.enable = true;
       };
+
+      # Browsing samba shares
+      gvfs = {
+        enable = true;
+        package = lib.mkForce pkgs.gnome.gvfs;
+      };
+
+      # Auto mount removable disks
+      udisks2 = {
+        enable = true;
+        mountOnMedia = true;
+      };
     };
 
     programs.hyprland = {
@@ -48,13 +60,9 @@ in {
 
       #######################
       # Common applications
-      nautilus # File manager
-      overskride # Bluetooth client TODO: Move it somewhere else
-      pavucontrol # Sound control TODO: Move it somewhere else
-
-      ###############################
-      # TODO: Configure ir
-      udiskie # Removable disk automounter
+      xfce.thunar # Filebrowser
+      overskride # Bluetooth client
+      pavucontrol # Sound control
     ];
 
     # Authentication agents
