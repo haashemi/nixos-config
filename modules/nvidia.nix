@@ -22,6 +22,8 @@ in {
       nvidia = {
         modesetting.enable = true;
         open = true;
+        nvidiaSettings = false; # IMO, It's useless!
+        package = config.boot.kernelPackages.nvidiaPackages.latest;
 
         prime = {
           amdgpuBusId = "PCI:6:0:0";
