@@ -11,6 +11,7 @@ in {
   };
 
   config = mkIf (cfg.enable) {
+    # https://wiki.archlinux.org/title/Plymouth
     boot.plymouth = {
       enable = true;
       extraConfig = ''

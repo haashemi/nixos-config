@@ -8,19 +8,19 @@
   timeZone = "Asia/Tehran";
 in {
   imports = [
-    ../../modules/boot
-    ../../modules/desktop
-    ../../modules/fonts
-    ../../modules/themes
-
+    ../../modules
     ./hardware.nix
   ];
 
   hx = {
+    boot.enableModifications = true;
     boot.plymouth.enable = true;
     boot.silent.enable = true;
+
     desktop.hyprland.enable = true;
+
     fonts.enable = true;
+    themes.enable = true;
   };
 
   # Enable auto login

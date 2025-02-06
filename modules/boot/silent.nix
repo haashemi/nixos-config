@@ -11,6 +11,7 @@ in {
   };
 
   config = lib.mkIf (cfg.enable) {
+    # https://wiki.archlinux.org/title/Silent_boot
     boot = {
       consoleLogLevel = 0;
       initrd.verbose = false;

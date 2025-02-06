@@ -1,18 +1,29 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
-    ./plymouth.nix # https://wiki.archlinux.org/title/Plymouth
-    ./silent.nix # https://wiki.archlinux.org/title/Silent_boot
+    ./plymouth.nix
+    ./silent.nix
   ];
 
-  # Kernel choice:  https://wiki.archlinux.org/title/Kernel
-  boot = {
-    kernelPackages = pkgs.linuxPackages_zen;
+  options.hx.boot = {
+    enableModifications = lib.mkEnableOption "Enable default boot configurations";
+  };
 
-    loader = {
-      efi.canTouchEfiVariables = true;
+  config = lib.mkIf (config.hx.boot.enableModifications) {
+    # Kernel choice:  https://wiki.archlinux.org/title/Kernel
+    boot = {
+      kernelPackages = pkgs.linuxPackages_zen;
 
-      systemd-boot.enable = true;
-      systemd-boot.editor = false;
+      loader = {
+        efi.canTouchEfiVariables = true;
+
+        systemd-boot.enable = true;
+        systemd-boot.editor = false;
+      };
     };
   };
 }
