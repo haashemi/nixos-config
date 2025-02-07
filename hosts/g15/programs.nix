@@ -16,6 +16,7 @@
     unzip
     ranger # File browser
     screen # Terminal multiplexer
+    go-task
     neofetch # System information
 
     # Encoding stuff
@@ -34,10 +35,10 @@
     # Development
     gh
     go
+    pnpm
     nixd # .nix language server
     hyprls # hyprland language server
     nodejs
-    corepack
     alejandra # .nix formatter
 
     # Code editors
