@@ -61,7 +61,6 @@ in {
       #######################
       # Common applications
       overskride # Bluetooth client
-      pavucontrol # Sound control
       xfce.thunar # Filebrowser
     ];
 

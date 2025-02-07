@@ -10,6 +10,8 @@ in {
   ];
 
   hx = {
+    audio.enable = true;
+
     boot.enable = true;
     boot.silent = true;
     boot.plymouth = true;
