@@ -41,7 +41,6 @@ in {
     environment.systemPackages = with pkgs; [
       dunst # Notification daemon
       waybar # Statusbar
-      hyprlock # Lock screen
       hypridle # Idle manager
       hyprpaper # Wallpaper manager
       polkit_gnome # Authentication agent
