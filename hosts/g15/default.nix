@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  winapps,
+  ...
+}: let
   username = "ali";
   hostName = "g15";
   timeZone = "Asia/Tehran";
@@ -87,6 +91,19 @@ in {
       ];
     };
   };
+
+  # ################################
+  # EXP: KVM
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = [username];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+  # EXP: WinApps
+  environment.systemPackages = [
+    winapps.winapps
+    winapps.winapps-launcher
+  ];
+  # ################################
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
