@@ -58,10 +58,19 @@ in {
       cliphist
       wl-clipboard
 
+      ###################
+      # Wayland utilities
+      playerctl # Used by mpris module
+
+      ###################
+      # File manager
+      xfce.thunar # Filebrowser
+      xfce.tumbler # Thumbnails for thunar
+      feh # Image viewer
+
       #######################
       # Common applications
       overskride # Bluetooth client
-      xfce.thunar # Filebrowser
     ];
 
     # Authentication agents
