@@ -14,17 +14,20 @@ in {
   ];
 
   hx = {
-    audio.enable = true;
+    system = {
+      audio.enable = true;
 
-    boot.enable = true;
-    boot.silent = true;
-    boot.plymouth = true;
+      boot.enable = true;
+      boot.silent = true;
+      boot.plymouth = true;
+    };
 
     desktop.hyprland.enable = true;
 
     nvidia.enable = true;
     nvidia.enableToolkit = true;
     power.enable = true;
+    programming.enable = true;
     fonts.enable = true;
     themes.enable = true;
   };

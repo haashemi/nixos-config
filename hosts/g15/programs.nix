@@ -25,25 +25,12 @@
     # GUI Apps
     mpv
     nekoray
-    discord
+    webcord
     alacritty
     tidal-hifi
     google-chrome
     onlyoffice-bin # MS-Office alternative
     telegram-desktop
-
-    # Development
-    gh
-    go
-    pnpm
-    nixd # .nix language server
-    hyprls # hyprland language server
-    nodejs
-    alejandra # .nix formatter
-
-    # Code editors
-    vscode-fhs
-    zed-editor
 
     # Games
     prismlauncher

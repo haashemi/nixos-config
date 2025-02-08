@@ -29,12 +29,7 @@ in {
           amdgpuBusId = "PCI:6:0:0";
           nvidiaBusId = "PCI:1:0:0";
 
-          # Not sure which one is better.
           sync.enable = true;
-          # offload = {
-          #   enable = true;
-          #   enableOffloadCmd = true;
-          # };
         };
       };
 

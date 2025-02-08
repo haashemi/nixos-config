@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.hx.boot;
+  cfg = config.hx.system.boot;
 in {
-  options.hx.boot = {
+  options.hx.system.boot = {
     enable = lib.mkEnableOption "Enable the boot configurations";
     silent = mkEnableOption "Enable silent boot";
     plymouth = mkEnableOption "Enable plymouth splash";

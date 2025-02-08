@@ -2,6 +2,7 @@
   imports = [
     ./audio.nix
     ./boot.nix
+    ./documentation.nix
     ./nix.nix
     ./nixpkgs.nix
   ];
