@@ -29,9 +29,9 @@ Modules are set of `nixos` configurations that can be imported and everything wo
 
 Here is a review of what each module folder (or file) supposed to do.
 
-- desktop:
+- `desktop`:
 
-  The `desktop` folder contains (almost) a full setup of each DE/WM that I might like to use. Currently I'm focusing on hyprland and plasma6 exists just for the backup plan.
+  A full setup of each DE/WM that I might like to use. Currently I'm focusing on hyprland and plasma6 exists just for the backup plan.
 
 - `hardware`:
 
