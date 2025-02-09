@@ -21,8 +21,10 @@ in {
 
     hardware = {
       audio.enable = true;
+      bluetooth.enable = true;
       nvidia.enable = true;
       nvidia.enableToolkit = true;
+      printing.enable = true;
     };
 
     desktop.hyprland.enable = true;
@@ -32,17 +34,6 @@ in {
   };
 
   hardware = {
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-      settings = {
-        General = {
-          Enable = "Source,Sink,Media,Socket";
-          Experimental = true;
-        };
-      };
-    };
-
     cpu.amd.updateMicrocode = true;
 
     # GA503QE's Bus IDs
@@ -69,12 +60,6 @@ in {
     displayManager = {
       autoLogin.enable = true;
       autoLogin.user = username;
-    };
-
-    # Enable printer drivers
-    printing = {
-      enable = true;
-      drivers = [pkgs.foo2zjs]; # HP Laserjet Pro m12a driver
     };
 
     # Asus Linux - GPU Manager

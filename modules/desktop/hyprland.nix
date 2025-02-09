@@ -65,10 +65,6 @@ in {
       xfce.thunar # Filebrowser
       xfce.tumbler # Thumbnails for thunar
       feh # Image viewer
-
-      #######################
-      # Common applications
-      overskride # Bluetooth client
     ];
 
     # Authentication agents
