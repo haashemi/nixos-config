@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.hx.system.audio;
+  cfg = config.hx.hardware.audio;
 in {
-  options.hx.system.audio = {
+  options.hx.hardware.audio = {
     enable = mkEnableOption "Enable default audio configurations";
   };
 

@@ -1,11 +1,13 @@
 {...}: {
   imports = [
-    ./desktop
+    ./desktop/hyprland.nix
+    ./desktop/plasma6.nix
+
+    ./hardware/audio.nix
+    ./hardware/nvidia.nix
+
     ./system
 
-    ./fonts.nix
-    ./nvidia.nix
-    ./power.nix
     ./programming.nix
     ./themes.nix
   ];

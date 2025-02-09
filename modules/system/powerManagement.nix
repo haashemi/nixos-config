@@ -4,9 +4,9 @@
   ...
 }:
 with lib; let
-  cfg = config.hx.power;
+  cfg = config.hx.system.powerManagement;
 in {
-  options.hx.power = {
+  options.hx.system.powerManagement = {
     enable = mkEnableOption "Enable power management";
   };
 

@@ -4,9 +4,9 @@
   ...
 }:
 with lib; let
-  cfg = config.hx.nvidia;
+  cfg = config.hx.hardware.nvidia;
 in {
-  options.hx.nvidia = {
+  options.hx.hardware.nvidia = {
     enable = mkEnableOption "Enable nvidia configurations";
     enableToolkit = mkEnableOption "Enable nvidia-container toolkit";
   };
@@ -25,10 +25,6 @@ in {
         package = config.boot.kernelPackages.nvidiaPackages.latest;
 
         prime = {
-          # TODO: Set these from the host!
-          amdgpuBusId = "PCI:6:0:0";
-          nvidiaBusId = "PCI:1:0:0";
-
           sync.enable = true;
         };
       };

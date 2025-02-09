@@ -5,12 +5,14 @@
   ...
 }:
 with lib; let
-  cfg = config.hx.fonts;
+  cfg = config.hx.system.fonts;
 in {
-  options.hx.fonts = {
+  options.hx.system.fonts = {
     enable = mkEnableOption "Enable font configurations";
   };
 
+  # Original source:
+  #   https://github.com/ASafaeirad/NixSkill/blob/ce0f84cc3984a39628b22441ea42bf6f0950bae6/hosts/common/fonts.nix
   config = mkIf (cfg.enable) {
     fonts = {
       enableDefaultPackages = true;

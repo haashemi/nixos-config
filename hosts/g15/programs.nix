@@ -39,8 +39,19 @@
   programs = {
     fish.enable = true;
     git.enable = true;
-    nix-ld.enable = true;
-    steam.enable = true;
+
+    # Games
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+    };
+    gamemode = {
+      enable = true;
+    };
+    gamescope = {
+      enable = true;
+      capSysNice = true;
+    };
   };
 
   virtualisation.docker = {

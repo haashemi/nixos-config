@@ -12,6 +12,7 @@
     "hyprpaper",
     "libexec",
     "networkmanager",
+    "nixos",
     "overskride",
     "pavucontrol",
     "pkgs",
