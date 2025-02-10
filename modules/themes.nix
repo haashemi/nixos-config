@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  pkgs-stable,
   config,
   ...
 }:
@@ -18,9 +19,9 @@ in {
       platformTheme = "qt5ct";
     };
 
-    environment.systemPackages = with pkgs; [
-      nordic
-      nwg-look
+    environment.systemPackages = [
+      pkgs-stable.nordic
+      pkgs.nwg-look
     ];
   };
 }
