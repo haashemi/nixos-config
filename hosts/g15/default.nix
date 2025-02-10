@@ -28,45 +28,10 @@ in {
     };
 
     desktop.hyprland.enable = true;
-
+    asusLinux.enableAll = true;
     programming.enable = true;
     themes.enable = true;
   };
-
-  hardware = {
-    cpu.amd.updateMicrocode = true;
-
-    # GA503QE's Bus IDs
-    nvidia.prime = {
-      amdgpuBusId = "PCI:6:0:0";
-      nvidiaBusId = "PCI:1:0:0";
-    };
-  };
-
-  networking = {
-    hostName = hostName;
-    nameservers = ["1.1.1.1"];
-    networkmanager.enable = true;
-  };
-
-  services = {
-    # Asus Linux - ROG Control Center
-    asusd = {
-      enable = true;
-      enableUserService = true;
-    };
-
-    # Enable auto login
-    displayManager = {
-      autoLogin.enable = true;
-      autoLogin.user = username;
-    };
-
-    # Asus Linux - GPU Manager
-    supergfxd.enable = true;
-  };
-
-  time.timeZone = timeZone;
 
   users = {
     defaultUserShell = pkgs.fish;
@@ -83,6 +48,37 @@ in {
         "libvirtd" # experimental: QEMU/KVM
         "networkmanager" # networking
       ];
+    };
+  };
+
+  time = {
+    timeZone = timeZone;
+    hardwareClockInLocalTime = true;
+  };
+
+  networking = {
+    hostName = hostName;
+    nameservers = ["1.1.1.1"];
+    networkmanager.enable = true;
+  };
+
+  services = {
+    # Enable auto login
+    displayManager = {
+      autoLogin.enable = true;
+      autoLogin.user = username;
+    };
+  };
+
+  hardware = {
+    cpu.amd = {
+      updateMicrocode = true;
+    };
+
+    # GA503QE specific
+    nvidia.prime = {
+      amdgpuBusId = "PCI:6:0:0";
+      nvidiaBusId = "PCI:1:0:0";
     };
   };
 

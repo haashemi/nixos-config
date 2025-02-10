@@ -10,6 +10,7 @@
 
     ./system
 
+    ./asusLinux.nix
     ./programming.nix
     ./themes.nix
   ];
