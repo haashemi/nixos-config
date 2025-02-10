@@ -10,6 +10,7 @@
     ncdu # Disk usage
 
     # CLI
+    dig # NSLookup
     tmux # Terminal multiplexer
     stow # Dotfiles manager
     aria2 # Download manager
