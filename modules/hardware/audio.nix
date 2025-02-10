@@ -11,6 +11,8 @@ in {
     enable = mkEnableOption "Enable default audio configurations";
   };
 
+  # TODO: More experiments required
+  # https://nixos.wiki/wiki/PipeWire
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       alsa-utils

@@ -11,6 +11,7 @@ in {
     enable = mkEnableOption "Enable Bluetooth";
   };
 
+  # TODO: More experiments required
   # https://nixos.wiki/wiki/Bluetooth
   config = mkIf cfg.enable {
     hardware.bluetooth = {

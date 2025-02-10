@@ -17,7 +17,7 @@ in {
       gh
 
       # Code editors
-      vscode-fhs
+      vscode
 
       # Programming languages
       ## Major Languages

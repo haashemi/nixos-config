@@ -11,8 +11,8 @@ in {
     enable = mkEnableOption "Enable font configurations";
   };
 
-  # Original source:
-  #   https://github.com/ASafaeirad/NixSkill/blob/ce0f84cc3984a39628b22441ea42bf6f0950bae6/hosts/common/fonts.nix
+  # TODO: More experiments required
+  # Original source: https://github.com/ASafaeirad/NixSkill
   config = mkIf (cfg.enable) {
     fonts = {
       enableDefaultPackages = true;

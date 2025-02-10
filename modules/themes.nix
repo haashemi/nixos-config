@@ -12,6 +12,7 @@ in {
     enable = mkEnableOption "Enable theme configurations";
   };
 
+  # TODO: WAY MORE experiments required
   config = mkIf (cfg.enable) {
     qt = {
       enable = true;

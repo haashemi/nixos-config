@@ -10,6 +10,7 @@ in {
     enable = mkEnableOption "Enable power management";
   };
 
+  # TODO: More experiments required
   # Battery Optimizations: https://nixos.wiki/wiki/Laptop
   config = mkIf (cfg.enable) {
     powerManagement = {

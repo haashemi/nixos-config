@@ -11,6 +11,7 @@ in {
     enableToolkit = mkEnableOption "Enable nvidia-container toolkit";
   };
 
+  # https://nixos.wiki/wiki/Nvidia
   config = mkIf (cfg.enable) {
     hardware = {
       graphics = {

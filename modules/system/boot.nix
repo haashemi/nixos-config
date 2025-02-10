@@ -13,21 +13,25 @@ in {
     plymouth = mkEnableOption "Enable plymouth splash";
   };
 
-  # Plymouth: https://wiki.archlinux.org/title/Plymouth
-  # Silent boot: https://wiki.archlinux.org/title/Silent_boot
-  # Kernel choice:  https://wiki.archlinux.org/title/Kernel
+  # Plymouth:
+  #   https://wiki.nixos.org/wiki/Plymouth
+  #   https://wiki.archlinux.org/title/Plymouth
+  # Silent boot:
+  #   https://wiki.archlinux.org/title/Silent_boot
+  # Kernel choice:
+  #   https://wiki.archlinux.org/title/Kernel
   config = lib.mkIf (cfg.enable) {
     boot = {
-      consoleLogLevel = lib.mkIf (cfg.silent) 0;
-      initrd.verbose = lib.mkIf (cfg.silent) false;
+      consoleLogLevel = lib.mkIf (cfg.silent || cfg.plymouth) 0;
+      initrd.verbose = lib.mkIf (cfg.silent || cfg.plymouth) false;
 
-      kernel.sysctl = lib.mkIf (cfg.silent) {
+      kernel.sysctl = lib.mkIf (cfg.silent || cfg.plymouth) {
         "kernel.printk" = "3 3 3 3";
       };
 
       kernelPackages = pkgs.linuxPackages_zen;
 
-      kernelParams = lib.mkIf (cfg.silent) [
+      kernelParams = lib.mkIf (cfg.silent || cfg.plymouth) [
         "quiet"
         "loglevel=0"
         "boot.shell_on_fail"
@@ -42,7 +46,7 @@ in {
         systemd-boot.enable = true;
         systemd-boot.editor = false;
 
-        timeout = lib.mkIf (cfg.silent) 0;
+        timeout = lib.mkIf (cfg.silent || cfg.plymouth) 0;
       };
 
       plymouth = lib.mkIf (cfg.plymouth) {
