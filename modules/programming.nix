@@ -15,23 +15,22 @@ in {
     environment.systemPackages = with pkgs; [
       # Utilities
       gh
+      go-task
 
       # Code editors
       vscode
 
       # Programming languages
-      ## Major Languages
-      ### Go
+      ## Go
       go
-      ### NodeJS
+      ## NodeJS
       pnpm
       nodejs
-      ## Minor languages
-      ### Nix
-      nixd # Language server
-      alejandra # Formatter
-      ### Hyprland
-      hyprls # Language server
+      ## Nix
+      nixd
+      alejandra
+      ## Hyprland
+      hyprls
     ];
   };
 }

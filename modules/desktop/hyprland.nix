@@ -41,10 +41,13 @@ in {
     environment.systemPackages = with pkgs; [
       dunst # Notification daemon
       waybar # Statusbar
-      hyprpaper # Wallpaper manager
       polkit_gnome # Authentication agent
       rofi-wayland # Application launcher
       brightnessctl # Brightness controller
+
+      #####################
+      # Hyprland's packages
+      hyprpaper
 
       ############
       # Screenshot
@@ -67,16 +70,20 @@ in {
       feh # Image viewer
     ];
 
+    # Not sure if this is actually needed with my dotfiles
+    # https://nixos.wiki/wiki/Wayland#Electron_and_Chromium
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
     # Authentication agents
     security.polkit.enable = true;
-    systemd.user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
+    systemd.user.services.hyprpolkitagent = {
+      description = "hyprpolkitagent";
       wantedBy = ["graphical-session.target"];
       wants = ["graphical-session.target"];
       after = ["graphical-session.target"];
       serviceConfig = {
         Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;

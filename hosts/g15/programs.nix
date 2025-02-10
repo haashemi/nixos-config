@@ -5,23 +5,20 @@
 }: {
   environment.systemPackages = with pkgs; [
     # CLI: Resource monitoring
-    btop # Resource monitor
-    htop # Process viewer
-    ncdu # Disk usage
+    btop
+    htop
+    ncdu
+    aria2 # Download manager
 
     # CLI
-    dig # NSLookup
-    tmux # Terminal multiplexer
-    stow # Dotfiles manager
-    aria2 # Download manager
+    dig
+    zip
+    stow
     unzip
     ranger # File browser
-    screen # Terminal multiplexer
-    go-task
-    neofetch # System information
 
     # Encoding stuff
-    pkgs-stable.ffmpeg-full
+    pkgs-stable.ffmpeg
 
     # GUI Apps
     mpv
