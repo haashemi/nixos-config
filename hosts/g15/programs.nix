@@ -27,8 +27,13 @@
     alacritty
     tidal-hifi
     google-chrome
-    onlyoffice-bin # MS-Office alternative
     telegram-desktop
+
+    # Office suite
+    libreoffice-qt6-fresh
+    hunspell
+    hunspellDicts.fa_IR
+    hunspellDicts.en_US-large
 
     # Games
     prismlauncher
@@ -42,6 +47,7 @@
     steam = {
       enable = true;
       gamescopeSession.enable = true;
+      extraCompatPackages = [pkgs.proton-ge-bin];
     };
     gamemode = {
       enable = true;

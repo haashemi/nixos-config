@@ -15,6 +15,8 @@ in {
     environment.systemPackages = with pkgs; [
       # Utilities
       gh
+      sqlc
+      goose
       go-task
 
       # Code editors
@@ -31,6 +33,9 @@ in {
       alejandra
       ## Hyprland
       hyprls
+
+      # Hmmmm...
+      postgresql_16
     ];
   };
 }
