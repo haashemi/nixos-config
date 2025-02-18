@@ -18,6 +18,9 @@ in {
         sddm.wayland.enable = true;
       };
 
+      # Secret service
+      gnome.gnome-keyring.enable = true;
+
       # Browsing samba shares (for xfce.thunar)
       gvfs = {
         enable = true;
